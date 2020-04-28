@@ -2,7 +2,7 @@ import com.holdenkarau.spark.testing.{DataFrameSuiteBase, SharedSparkContext}
 import com.typesafe.config.ConfigFactory
 import my.challenge.{LogEntry, TopNCalculator}
 import org.apache.spark.sql.Row
-import org.apache.spark.sql.types.{StringType, StructField, StructType, IntegerType}
+import org.apache.spark.sql.types.{IntegerType, StringType, StructField, StructType}
 import org.scalatest.{FunSuite, Matchers}
 
 /**

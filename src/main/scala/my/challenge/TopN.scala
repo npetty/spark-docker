@@ -160,40 +160,9 @@ object TopN extends App{
     } catch {
      case e: ConfigException =>
       log.error("No application.conf configuration found, aborting job. Exception:" + e.getMessage)
+      println("No application.conf configuration found, aborting job. Exception:" + e.getMessage)
       System.exit(-1)
     } finally {
      if (session.isDefined) session.get.stop()
     }
-
-
-
-
-
-
-
-
-    //val w = Window.partitionBy("day").orderBy(desc("count"))
-
-/*
-    val rankedUrl = accessRecords.groupBy("day", "url")
-      .count()
-      .withColumn("daily_rank", rank().over(w))
-      .persist()
-
-    val rankedHost = accessRecords.groupBy("day", "clientIp")
-      .count()
-      .withColumn("daily_rank", rank().over(w))
-      .persist()
-
- */
-
-    /*
-    rankedUrl.selectExpr("day", "daily_rank", "url", "count as url_count")
-      .join(rankedHost.selectExpr("day", "daily_rank", "clientIp", "count as host_count"),
-          Seq("day", "daily_rank"))
-      .createOrReplaceTempView("joinedData")
-
-     */
-
-
 }
