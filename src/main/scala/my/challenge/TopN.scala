@@ -58,7 +58,15 @@ object TopN extends App{
      /**
       * Load config variables from application.conf file and set the spark config variables.
       */
-     val config = ConfigFactory.load().getConfig(MAIN_CONFIG_PATH)
+     val extConfigFile = new File("conf/application.conf")
+     val config =  if(extConfigFile.exists()) {
+      val extConfig = ConfigFactory.parseFile(extConfigFile).getConfig(MAIN_CONFIG_PATH)
+      log.info("loaded external config to override internal config")
+      ConfigFactory.load(extConfig)
+     }
+     else {
+      ConfigFactory.load().getConfig(MAIN_CONFIG_PATH)
+     }
      val appName = if(config.hasPath(CONFIG_SPARK_APP)) config.getString(CONFIG_SPARK_APP) else DEFAULT_APP_NAME
      val sparkMaster = if(config.hasPath(CONFIG_SPARK_MASTER)) config.getString(CONFIG_SPARK_MASTER) else DEFAULT_SPARK_MASTER
      val my_n = if(config.hasPath(CONFIG_N_VALUE)) config.getInt(CONFIG_N_VALUE) else DEFAULT_N

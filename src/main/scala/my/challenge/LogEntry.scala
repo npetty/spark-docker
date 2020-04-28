@@ -41,7 +41,8 @@ object LogEntry {
 
   // Matching group distro
   //                      1     2     3         4                          5              6              7                    8      9
-  val LOG_PATTERN = """^(\S+) (\S+) (\S+) \[([\w:/]+)\s[+\-]\d{4}\] "(GET|HEAD|POST)\s([\S|\s]+?)\s?(HTTP\/[0|1]\.[0-2])?" (\d{3}) (\S+)""".r
+  //val LOG_PATTERN = """^(\S+) (\S+) (\S+) \[([\w:/]+)\s[+\-]\d{4}\] "(GET|HEAD|POST)\s([\S|\s]+?)\s?(HTTP\/[0|1]\.[0-2])?" (\d{3}) (\S+)""".r
+  val LOG_PATTERN = """^(\S+) (\S+) (\S+) \[([\w:/]+\s[+\-]\d{4})\] "(\S+)\s+(\S+)\s+(\S+)?" (\d{3}) (\S+)""".r
 
   // Use this as hostname when an invalid log is found
   val INVALID_CLIENT = "Empty"
